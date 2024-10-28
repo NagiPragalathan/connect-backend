@@ -1,6 +1,7 @@
 import requests
 
-BASE_URL = 'http://localhost:3000/api'  # Base URL for your API endpoints
+BASE_URL = 'http://localhost:3000/api/auth'  # Base URL for authentication endpoints
+PROTECTED_URL = 'http://localhost:3000/api/protected'  # URL for protected route
 
 # Test Sign-up
 def test_signup(username, password):
@@ -36,12 +37,11 @@ def test_login(username, password):
 
 # Test Protected Route
 def test_protected_route(access_token):
-    url = f"{BASE_URL}/protected"
     headers = {
         "Authorization": f"Bearer {access_token}"
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(PROTECTED_URL, headers=headers)
     if response.status_code == 200:
         print(f"Protected route accessed: {response.json()}")
     else:
@@ -63,8 +63,8 @@ def test_refresh_token(refresh_token):
         return None
 
 if __name__ == "__main__":
-    # Change these values as needed
-    username = "john_doe"
+    # Replace with desired username and password
+    username = "john_doe1"
     password = "password123"
 
     print("1. Sign-up Test")

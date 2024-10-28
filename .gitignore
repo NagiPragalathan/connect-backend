@@ -1,0 +1,44 @@
+# Node.js specific files
+node_modules/
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+logs/*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+
+# Database files (if any local database is used)
+*.sqlite3
+
+# Production environment variables
+.env.production
+
+# Coverage directory used by testing tools
+coverage/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Debug output directories
+out/
+dist/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Miscellaneous system files
+*.swp
