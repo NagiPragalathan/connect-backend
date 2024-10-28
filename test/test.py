@@ -1,7 +1,7 @@
 import requests
 
-BASE_URL = 'http://localhost:3000/api/auth'  # Base URL for authentication endpoints
-PROTECTED_URL = 'http://localhost:3000/api/protected'  # URL for protected route
+BASE_URL = 'https://connect-backend-six.vercel.app/api/auth'  # Base URL for authentication endpoints
+PROTECTED_URL = 'https://connect-backend-six.vercel.app/api/protected'  # URL for protected route
 
 # Test Sign-up
 def test_signup(username, password):
@@ -64,7 +64,7 @@ def test_refresh_token(refresh_token):
 
 if __name__ == "__main__":
     # Replace with desired username and password
-    username = "john_doe1"
+    username = "asd"
     password = "password123"
 
     print("1. Sign-up Test")
