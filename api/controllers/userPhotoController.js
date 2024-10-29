@@ -82,3 +82,33 @@ exports.getConnectionsByUsername = async (req, res) => {
         res.status(500).json({ message: 'Error retrieving connections', error: error.message });
     }
 };
+
+
+exports.getPhotoByUsernames = async (req, res) => {
+    const { username_1, username_2 } = req.params;
+
+    try {
+        const userPhoto = await UserPhoto.findOne({
+            $or: [
+                { username_1: username_1, username_2: username_2 },
+                { username_1: username_2, username_2: username_1 }
+            ]
+        });
+
+        if (!userPhoto) {
+            return res.status(404).json({ message: 'No record found for the given usernames.' });
+        }
+
+        const photoBucket = await setupPhotoStorage();
+
+        const downloadStream = photoBucket.openDownloadStream(userPhoto.photoId);
+
+        downloadStream.on('error', (err) => {
+            res.status(404).json({ message: 'Photo not found', error: err.message });
+        });
+
+        downloadStream.pipe(res);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving photo', error: error.message });
+    }
+};
